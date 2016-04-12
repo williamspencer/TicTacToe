@@ -8,21 +8,14 @@ public class TicTacToe {
     static int moves;
     static boolean win;
     
-    //creates TicTacToe class that intializes the playing board array
+    //creates TicTacToe class that initializes the blank playing board array
     public TicTacToe() {
         board = new char[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 board[i][j] = '-';
     }
-    
-    //resets the board to the original initialized one
-    public void resetBoard(){
-    	for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                board[i][j] = '-';
-    }
-    
+        
     //method that prints the current board
     public void printBoard() {
         System.out.println("\t0\t1\t2\n");
@@ -98,13 +91,13 @@ public class TicTacToe {
     public static void main(String[] args) {
         String user = "y";
         Scanner scan1 = new Scanner(System.in);
+        
         //creates first loop and instance of game, as long as user agrees to another game
         do {
         	win = false;
         	moves = 0;
         	currentPiece = 'X';
             TicTacToe game = new TicTacToe();
-            game.resetBoard();
             
         	//loops game until a winner is found           
             while (!win) {
@@ -127,14 +120,13 @@ public class TicTacToe {
             game.printBoard();
             if (win){
               System.out.println("\n" + currentPiece + " is our winner! Congratulations!");
-              game.resetBoard();
             } else if (moves == 9) {
               System.out.println("We have a tie!");
-              game.resetBoard();
             }
             System.out.print("Play again? (y/n): ");
             user = scan1.next();
           
-        } while (user.equalsIgnoreCase("y"));
+        } 	while (user.equalsIgnoreCase("y"));
+        	scan1.close();
     }
 }
