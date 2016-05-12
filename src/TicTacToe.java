@@ -69,8 +69,7 @@ public class TicTacToe {
 		return (checkRows() || checkColumns() || checkDiag());
 	}
 
-	// adds mark to a row/column that exists on the board and doesn't overwrite
-	// a move
+	// adds mark to a row/column that exists on the board and doesn't overwrite a move
 	public boolean placeMark(int row, int col) {
 				if (board[row][col] == '-') {
 					board[row][col] = currentPiece;
