@@ -71,10 +71,10 @@ public class TicTacToe {
 
 	// adds mark to a row/column that exists on the board and doesn't overwrite a move
 	public boolean placeMark(int row, int col) {
-				if (board[row][col] == '-') {
-					board[row][col] = currentPiece;
-					return true;
-				}
+		if (board[row][col] == '-') {
+			board[row][col] = currentPiece;
+				return true;
+		}
 		System.out.println("That piece is already taken! Choose another space: ");
 		changePiece();
 		return false;
@@ -119,12 +119,10 @@ public class TicTacToe {
 		return input;
 	}
 
-	// main method that creates new instance of TicTacToe, starts new game
-	public static void main(String[] args) {
+	
+	// starts game and loops as long as user agrees to another game
+	private static void playTicTacToe() {
 		String user = "";
-
-		// creates first loop and instance of game
-		// as long as user agrees to another game
 		do {
 			win = false;
 			moves = 0;
@@ -135,30 +133,32 @@ public class TicTacToe {
 			while (!win) {
 				int x, y;
 				game.printBoard();
+				
 				if (currentPiece == 'X'){
-				System.out.print("\nEnter X axis: ");
-				x = getRange(0, 2);
-				System.out.print("\nEnter Y axis: ");
-				y = getRange(0, 2);
-				game.placeMark(x, y);
-				moves++;
+					System.out.print("\nEnter X axis: ");
+					x = getRange(0, 2);
+					System.out.print("\nEnter Y axis: ");
+					y = getRange(0, 2);
+					game.placeMark(x, y);
+					moves++;
 				} else {
 					System.out.println("\nComputer's move: \n");
-				getPCMove();
-				x = compX;
-				y = compY;
-				game.placeMark(x, y);
-				moves++;
+					getPCMove();
+					x = compX;
+					y = compY;
+					game.placeMark(x, y);
+					moves++;
 				}
+				
 				win = game.checkWinner();
 				if (win)
 					break;
 				game.changePiece();
 			}
-
+			game.printBoard();
+			
 			// if win or tie is found, board is printed with winner
 			// asks player if the game is to be repeated or not
-			game.printBoard();
 			if (win) {
 				System.out.println("\n" + currentPiece + " is our winner! Congratulations!");
 			} else if (moves == 9) {
@@ -168,7 +168,15 @@ public class TicTacToe {
 			user = scan1.next();
 
 		} while (user.equalsIgnoreCase("y"));
+	}
+	
+	// main method that creates new instance of TicTacToe, starts new game
+	public static void main(String[] args) {
+
+		playTicTacToe();
 		System.out.println("Thank you for playing!");
 		scan1.close();
 	}
+	
+
 }
