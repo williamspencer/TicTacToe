@@ -77,9 +77,10 @@ public class TicTacToe {
 		}
 		System.out.println("That piece is already taken! Choose another space: ");
 		changePiece();
+		
 		return false;
 	}
-
+	// generates random computer move, looking for first blank space it finds
 	public static void getPCMove() {
 		compX = random.nextInt(3);
 		compY = random.nextInt(3);
@@ -97,7 +98,7 @@ public class TicTacToe {
 			currentPiece = 'X';
 		}
 	}
-
+	// validation for user input
 	public static int readValidInt() {
 		
 		while (!scan1.hasNextInt()) {
@@ -107,7 +108,8 @@ public class TicTacToe {
 		int x = scan1.nextInt();
 		return x;
 	}
-
+	
+	// validation for correct user input range
 	public static int getRange(int min, int max) {
 
 		int input = readValidInt();
@@ -135,9 +137,9 @@ public class TicTacToe {
 				game.printBoard();
 				
 				if (currentPiece == 'X'){
-					System.out.print("\nEnter X axis: ");
+					System.out.print("\nEnter a X axis coordinate: ");
 					x = getRange(0, 2);
-					System.out.print("\nEnter Y axis: ");
+					System.out.print("\nEnter a Y axis coordinate: ");
 					y = getRange(0, 2);
 					game.placeMark(x, y);
 					moves++;
@@ -161,7 +163,7 @@ public class TicTacToe {
 			// asks player if the game is to be repeated or not
 			if (win) {
 				System.out.println("\n" + currentPiece + " is our winner! Congratulations!");
-			} else if (moves == 9) {
+			} else if (moves >= 9) {
 				System.out.println("We have a tie!");
 			}
 			System.out.print("Play again? (y/n): ");
@@ -170,13 +172,11 @@ public class TicTacToe {
 		} while (user.equalsIgnoreCase("y"));
 	}
 	
-	// main method that creates new instance of TicTacToe, starts new game
+	// main method that starts new game
 	public static void main(String[] args) {
 
 		playTicTacToe();
 		System.out.println("Thank you for playing!");
 		scan1.close();
 	}
-	
-
 }
